@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>用于测试git代码冲突</h1>
+    <script>
+        let task = []
+        for(var i=0;i<4;i++){
+            task.push(()=>{//push的是函数
+                console.log('i is '+ i)
+            })
+        }
+        for(var j=0;j<task.length;j++){
+            task[j]()//让这个函数执行  由于形成了闭包 i每次都是4 只会输出4 
+        }
+
+        let arr = []
+        for(var k=0;k<4;k++){
+            !function(n){
+                arr.push(()=>{
+                    console.log('k is '+n)
+                })//匿名函数完美解决
+            }(k)
+        }
+        
+        for(var m=0;m<arr.length;m++){
+            arr[m]()
+        }
+
+
+    </script>
+</body>
+</html>
